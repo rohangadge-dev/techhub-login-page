@@ -1,0 +1,490 @@
+/* ==========================================================================
+   TechHub Design System & Stylesheet (Mobile-First)
+   Theme: Dark Navy & Indigo
+   ========================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-dark: #080c16;
+  --bg-card: rgba(15, 23, 42, 0.82);
+  --bg-card-border: rgba(99, 102, 241, 0.18);
+  --bg-input: #0f172a;
+  --bg-input-hover: #1e293b;
+  --bg-input-border: #334155;
+  --bg-input-border-focus: #6366f1;
+
+  /* Primary Brand Accents */
+  --primary-indigo: #6366f1;
+  --primary-indigo-hover: #4f46e5;
+  --primary-indigo-active: #4338ca;
+  --primary-glow: rgba(99, 102, 241, 0.35);
+
+  /* Text & Feedback */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --error: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.12);
+  --error-border: rgba(239, 68, 68, 0.35);
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.12);
+  --success-border: rgba(16, 185, 129, 0.35);
+  --warning-badge: #e0e7ff;
+  --warning-badge-bg: rgba(99, 102, 241, 0.16);
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Geometry & Shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+  --shadow-card: 0 20px 45px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--bg-card-border);
+  --shadow-input-focus: 0 0 0 3px rgba(99, 102, 241, 0.28);
+  --shadow-error-focus: 0 0 0 3px rgba(239, 68, 68, 0.28);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+  overflow-x: hidden;
+}
+
+/* Ambient Background Glows */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-glow-1 {
+  width: 320px;
+  height: 320px;
+  top: -80px;
+  left: -60px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+}
+
+.ambient-glow-2 {
+  width: 360px;
+  height: 360px;
+  bottom: -100px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(67, 56, 202, 0.24) 0%, transparent 70%);
+}
+
+/* Layout Wrapper */
+.login-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* Card Container */
+.login-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Demo Notice Badge */
+.demo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--warning-badge-bg);
+  color: var(--warning-badge);
+  border: 1px solid rgba(165, 180, 252, 0.22);
+  padding: 0.3rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.demo-badge-icon {
+  flex-shrink: 0;
+  color: #a5b4fc;
+}
+
+/* Card Header */
+.card-header {
+  margin-bottom: 1.5rem;
+}
+
+.brand-logo {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.35rem;
+}
+
+.card-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Feedback / Alert Banner */
+.alert-banner {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.alert-banner[hidden] {
+  display: none !important;
+}
+
+.alert-error {
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: #fca5a5;
+}
+
+.alert-success {
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: #6ee7b7;
+}
+
+/* Form Groups & Inputs */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.input-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.875rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.form-input {
+  width: 100%;
+  background-color: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--bg-input-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 2.6rem 0.75rem 2.5rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: var(--text-dim);
+}
+
+.form-input:hover {
+  background-color: var(--bg-input-hover);
+  border-color: #475569;
+}
+
+.form-input:focus {
+  background-color: var(--bg-input);
+  border-color: var(--bg-input-border-focus);
+  box-shadow: var(--shadow-input-focus);
+}
+
+.form-input:focus + .input-icon,
+.input-control:focus-within .input-icon {
+  color: var(--primary-indigo);
+}
+
+/* Validation States */
+.form-group.has-error .form-input {
+  border-color: var(--error);
+}
+
+.form-group.has-error .form-input:focus {
+  box-shadow: var(--shadow-error-focus);
+}
+
+.form-group.has-error .input-icon {
+  color: var(--error);
+}
+
+.field-error {
+  min-height: 1.15rem;
+  font-size: 0.75rem;
+  color: var(--error);
+  margin-top: 0.35rem;
+  display: block;
+}
+
+/* Password Toggle Button */
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+  color: var(--text-main);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.password-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary-indigo);
+  outline-offset: 2px;
+}
+
+/* Form Options: Checkbox & Links */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: -0.25rem;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--bg-input-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  transform: scale(0);
+  background-color: #ffffff;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transition: transform 0.15s ease-in-out;
+}
+
+.custom-checkbox:checked {
+  background-color: var(--primary-indigo);
+  border-color: var(--primary-indigo);
+}
+
+.custom-checkbox:checked::before {
+  transform: scale(1);
+}
+
+.custom-checkbox:focus-visible {
+  outline: 2px solid var(--primary-indigo);
+  outline-offset: 2px;
+}
+
+.checkbox-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.form-link {
+  font-size: 0.8125rem;
+  color: var(--primary-indigo);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.form-link:hover {
+  color: #818cf8;
+  text-decoration: underline;
+}
+
+.form-link:focus-visible {
+  outline: 2px solid var(--primary-indigo);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Primary Submit Button */
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-indigo) 0%, var(--primary-indigo-hover) 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #7073f3 0%, var(--primary-indigo) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  background-color: var(--primary-indigo-active);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Loading Spinner */
+.btn-spinner {
+  display: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.submit-btn.is-loading .btn-spinner {
+  display: inline-block;
+}
+
+/* Card Footer */
+.card-footer {
+  margin-top: 1.75rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 1.25rem;
+}
+
+.footer-text {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* Keyframe Animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Desktop Enhancements */
+@media (min-width: 640px) {
+  .login-card {
+    padding: 2.5rem 2.25rem;
+  }
+
+  .card-title {
+    font-size: 1.65rem;
+  }
+}

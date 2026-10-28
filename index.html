@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TechHub Practice Login Page - A modern, accessible authentication UI demo">
+  <title>TechHub — Sign In</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+      <!-- Demo Disclaimer Badge -->
+      <div class="demo-badge" role="note" aria-label="Demo environment notice">
+        <svg class="demo-badge-icon" viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        <span>Practice Demo • Simulated Locally</span>
+      </div>
+
+      <!-- Header & Branding -->
+      <header class="card-header">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+            <path d="M9 11L16 7L23 11V21L16 25L9 21V11Z" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M16 7V25M9 11L23 21M9 21L23 11" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.5"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="1" stop-color="#4338CA"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1 class="card-title">Welcome back</h1>
+        <p class="card-subtitle">Sign in to your TechHub developer dashboard</p>
+      </header>
+
+      <!-- Feedback / Alert Banner -->
+      <div id="formAlert" class="alert-banner" role="alert" aria-live="polite" hidden></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="login-form" novalidate>
+        <!-- Email Field -->
+        <div class="form-group" id="emailGroup">
+          <label for="email" class="form-label">Email address</label>
+          <div class="input-control">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
+            </span>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-input" 
+              placeholder="developer@techhub.io" 
+              autocomplete="email" 
+              required
+              aria-describedby="emailError"
+              aria-invalid="false"
+            >
+          </div>
+          <span id="emailError" class="field-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group" id="passwordGroup">
+          <div class="label-row">
+            <label for="password" class="form-label">Password</label>
+            <a href="#forgot-password" class="form-link" tabindex="0">Forgot password?</a>
+          </div>
+          <div class="input-control">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              class="form-input" 
+              placeholder="Enter your password" 
+              autocomplete="current-password" 
+              required
+              aria-describedby="passwordError"
+              aria-invalid="false"
+            >
+            <button 
+              type="button" 
+              id="togglePassword" 
+              class="password-toggle-btn" 
+              aria-label="Show password" 
+              aria-pressed="false"
+              title="Show password"
+            >
+              <!-- Eye Open Icon (Default) -->
+              <svg id="eyeIcon" class="icon-eye" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+              </svg>
+              <!-- Eye Slashed Icon (Hidden by default) -->
+              <svg id="eyeOffIcon" class="icon-eye-off" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true" style="display: none;">
+                <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"/>
+                <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.064 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/>
+              </svg>
+            </button>
+          </div>
+          <span id="passwordError" class="field-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Keep Signed In Checkbox -->
+        <div class="form-options">
+          <label class="checkbox-label" for="rememberMe">
+            <input type="checkbox" id="rememberMe" name="rememberMe" class="custom-checkbox">
+            <span class="checkbox-text">Keep me signed in</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="submit-btn">
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-text">Sign In</span>
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <footer class="card-footer">
+        <p class="footer-text">
+          New to TechHub? 
+          <a href="#register" class="form-link">Create an account</a>
+        </p>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
